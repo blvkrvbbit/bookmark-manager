@@ -6,7 +6,7 @@ import Home from "./pages/home/Home.tsx";
 import SignIn from "./pages/sign-in/SignIn.tsx";
 import SignUp from "./pages/sign-up/SignUp.tsx";
 import Archived from "./pages/archived/Archived.tsx";
-
+import BaseComponents from "./pages/base-components/BaseComponents.tsx";
 
 const App = () => {
   return (
