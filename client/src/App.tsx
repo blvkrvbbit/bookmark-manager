@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import Home from "./pages/home/home.page";
-import SignIn from "./pages/sign-in/sign-in.page";
-import SignUp from "./pages/sign-up/sign-up.page";
-import Archived from "./pages/archived/archived.page";
-import BaseComponents from "./pages/base-components/BaseComponents";
+
+import Home from "./pages/home/Home.tsx";
+import SignIn from "./pages/sign-in/SignIn.tsx";
+import SignUp from "./pages/sign-up/SignUp.tsx";
+import Archived from "./pages/archived/Archived.tsx";
+
 
 const App = () => {
   return (
