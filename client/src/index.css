@@ -1,3 +1,5 @@
+@import url("./assets/css/reset.css");
+@import url("./assets/css/variables.css");
 @font-face {
   font-family: "Manrope";
   src: url("./assets/fonts/Manrope-Regular.ttf") format("truetype");
@@ -26,11 +28,16 @@
   font-style: normal;
 }
 
+html,
 body {
   font-family: "Manrope", sans-serif;
   font-size: 62.5%;
 }
 
+button {
+  background: none;
+  border: none;
+}
 .text-preset-1-bold {
   font-size: 2.4rem;
   line-height: 140%;

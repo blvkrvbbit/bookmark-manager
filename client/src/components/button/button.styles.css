@@ -1,0 +1,57 @@
+@import url("../../assets/css/variables.css");
+
+.btn {
+  position: relative;
+  border-radius: var(--radius-8);
+  padding: var(--spacing-125) var(--spacing-150);
+  box-sizing: border-box;
+  border: 0.1rem solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--teal-700);
+  color: var(--neutral-light-0);
+}
+
+.btn-primary:focus {
+  outline: var(--spacing-025) solid var(--teal-700);
+  outline-offset: var(--spacing-025);
+  border: 0.1rem solid var(--neutral-light-500);
+}
+
+.btn-primary::before {
+  /* linear stroke effect */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+}
+
+.btn-secondary {
+  background: var(--neutral-light-0);
+  color: var(--neutral-light-900);
+  border: 0.1rem solid var(--neutral-light-400);
+}
+
+.btn-secondary:focus {
+  outline: var(--spacing-025) solid var(--teal-700);
+  outline-offset: var(--spacing-025);
+  border: 0.1rem solid var(--neutral-light-300);
+}
+
+.btn-danger {
+  background: var(--red-800);
+  color: var(--neutral-light-0);
+}
+
+.btn-danger:focus {
+  outline: var(--spacing-025) solid var(--red-800);
+  outline-offset: var(--spacing-025);
+  border: 0.1rem solid var(--red-600);
+}

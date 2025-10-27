@@ -1,0 +1,84 @@
+@import url("../../assets/css/variables.css");
+
+textarea {
+  padding: var(--spacing-150);
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: var(--radius-8);
+  padding-left: 4rem;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.8rem;
+  background: var(--neutral-light-0);
+  border: 0.1rem solid var(--neutral-dark-500);
+  color: var(--neutral-light-800);
+}
+
+textarea:focus {
+  outline: 2px solid var(--teal-700);
+  outline-offset: 2px;
+  border: 0.1rem solid var(--neutral-light-500);
+}
+
+textarea.error {
+  border: 0.1rem solid var(--red-800);
+}
+
+.textarea-container {
+  position: relative;
+}
+
+.textarea-label {
+  margin-bottom: var(--spacing-075);
+  display: block;
+  color: var(--neutral-light-900);
+}
+
+.textarea-label .required {
+  color: var(--teal-700);
+}
+
+.textarea-container .icon {
+  position: absolute;
+  top: 1.3rem;
+  z-index: 20;
+  left: 1.2rem;
+}
+
+.textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--neutral-light-800);
+}
+
+.hint {
+  color: var(--neutral-light-800);
+}
+
+.dark textarea {
+  /* Insert dark styles here when there... */
+  background: var(--neutral-dark-500);
+  color: var(--neutral-dark-100);
+}
+
+.dark textarea:focus {
+  border: 0.1rem solid var(--neutral-dark-600);
+  outline: 2px solid var(--neutral-dark-100);
+  outline-offset: 2px;
+}
+
+.dark .textarea-label {
+  color: var(--neutral-dark-0);
+}
+
+.dark .textarea-label .required {
+  color: var(--neutral-dark-100);
+}
+
+.dark .textarea-footer {
+  color: var(--neutral-dark-100);
+}
+
+.dark .textarea-container .hint {
+  color: var(--neutral-dark-100);
+}
