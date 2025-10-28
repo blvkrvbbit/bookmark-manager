@@ -1,4 +1,4 @@
-import "./textarea.styles.css";
+import "./TextArea.css";
 
 type Props = {
   label?: string;

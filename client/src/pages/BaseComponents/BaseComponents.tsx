@@ -1,7 +1,7 @@
-import Button from "../../components/button/Button";
-import Input from "../../components/input/Input";
-import Logo from "../../components/logo/Logo";
-import TextArea from "../../components/textarea/TextArea";
+import Button from "../../components/Button/Button";
+import Input from "../../components/Input/Input";
+import Logo from "../../components/Logo/Logo";
+import TextArea from "../../components/TextArea/TextArea";
 import "./base-components.styles.css";
 
 const BaseComponents = () => {

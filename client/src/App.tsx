@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
-import Home from "./pages/home/Home.tsx";
-import SignIn from "./pages/sign-in/SignIn.tsx";
-import SignUp from "./pages/sign-up/SignUp.tsx";
-import Archived from "./pages/archived/Archived.tsx";
-import BaseComponents from "./pages/base-components/BaseComponents.tsx";
+import Home from "./pages/Home/Home.tsx";
+import SignIn from "./pages/SignIn/SignIn.tsx";
+import SignUp from "./pages/SignUp/SignUp.tsx";
+import Archived from "./pages/Archived/Archived.tsx";
+import BaseComponents from "./pages/BaseComponents/BaseComponents.tsx";
 
 const App = () => {
   return (

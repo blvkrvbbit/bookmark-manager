@@ -1,0 +1,66 @@
+@import url("../../assets/css/variables.css");
+
+.sign-up-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.auth-form {
+  box-sizing: border-box;
+  background: var(--neutral-light-0);
+  max-width: 34.3rem;
+  /* padding: 3.2rem 2rem;  */
+  padding-top: 3.2rem;
+  padding-bottom: 0rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0 auto;
+  height: 62.3rem;
+  border-radius: var(--radius-12);
+}
+
+.auth-form .intro p {
+  color: var(--neutral-light-800);
+}
+
+.auth-form {
+  display: grid;
+  grid-auto-flow: row; /* lays items out horizontally */
+  column-gap: 3.2rem; /* horizontal spacing only */
+}
+
+.auth-form .form-group {
+  margin-bottom: 1.6rem;
+}
+
+.auth-form .form-footer {
+  color: var(--neutral-light-800);
+  text-align: center;
+}
+
+.auth-form .btn {
+  padding: var(--spacing-150) var(--spacing-200);
+  width: 100%;
+}
+
+.auth-form .form-footer a {
+  color: var(--neutral-dark-900);
+}
+
+@media screen and (min-width: 768px) {
+  .sign-up-container {
+    margin-left: 16rem;
+    margin-right: 16rem;
+  }
+  .auth-form {
+    padding-top: 4rem;
+    max-width: 44.8rem;
+    padding-left: 3.2rem;
+    padding-right: 3.2rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+}

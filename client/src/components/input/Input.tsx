@@ -1,4 +1,4 @@
-import "./input.styles.css";
+import "./Input.css";
 
 type Props = {
   label?: string;
@@ -10,7 +10,7 @@ type Props = {
 
 const Input = ({ label, icon, className, placeholder, hint }: Props) => {
   return (
-    <div>
+    <div className="form-group">
       {label && (
         <label className="input-label text-preset-4-semibold">
           {label} <span className="required">*</span>
@@ -18,7 +18,9 @@ const Input = ({ label, icon, className, placeholder, hint }: Props) => {
       )}
       <div className="input-container">
         <input
-          className={`${className ? className : ""} text-preset-4-medium`}
+          className={`${className ? className : ""} text-preset-4-medium ${
+            icon && "with-icon"
+          }`}
           placeholder={placeholder && placeholder}
           type="text"
         />
