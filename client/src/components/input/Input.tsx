@@ -1,3 +1,4 @@
+import type { ChangeEvent } from "react";
 import "./Input.css";
 
 type Props = {
@@ -5,15 +6,29 @@ type Props = {
   icon?: string;
   className?: string;
   placeholder?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   hint?: string;
+  name: string;
+  type?: string;
+  required?: boolean;
 };
 
-const Input = ({ label, icon, className, placeholder, hint }: Props) => {
+const Input = ({
+  label,
+  icon,
+  className,
+  placeholder,
+  hint,
+  onChange,
+  name,
+  type,
+  required,
+}: Props) => {
   return (
     <div className="form-group">
       {label && (
         <label className="input-label text-preset-4-semibold">
-          {label} <span className="required">*</span>
+          {label} {required && <span className="required">*</span>}
         </label>
       )}
       <div className="input-container">
@@ -21,8 +36,10 @@ const Input = ({ label, icon, className, placeholder, hint }: Props) => {
           className={`${className ? className : ""} text-preset-4-medium ${
             icon && "with-icon"
           }`}
+          onChange={onChange}
           placeholder={placeholder && placeholder}
-          type="text"
+          name={name}
+          type={type}
         />
         {hint && (
           <p className="text-preset-4-medium hint">

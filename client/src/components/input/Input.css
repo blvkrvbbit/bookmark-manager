@@ -1,6 +1,7 @@
 @import url("../../assets/css/variables.css");
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   padding: var(--spacing-150);
   width: 100%;
   box-sizing: border-box;
@@ -15,7 +16,8 @@ input[type="text"] {
 .with-icon {
   padding-left: 4rem;
 }
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   outline: var(--spacing-025) solid var(--teal-700);
   outline-offset: var(--spacing-025);
   border: var(--spacing-025) solid var(--neutral-light-500);
@@ -50,13 +52,15 @@ input.error {
   color: var(--neutral-light-800);
 }
 
-.dark input[type="text"] {
+.dark input[type="text"],
+.darkinput[type="password"] {
   /* Insert dark styles here when there... */
   background: var(--neutral-dark-500);
   color: var(--neutral-dark-100);
 }
 
-.dark input[type="text"]:focus {
+.dark input[type="text"]:focus,
+.dark input[type="password"]:focus {
   border: var(--spacing-025) solid var(--neutral-dark-600);
   outline: var(--spacing-025) solid var(--neutral-dark-100);
   outline-offset: var(--spacing-025);

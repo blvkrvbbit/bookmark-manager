@@ -1,14 +1,43 @@
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import Logo from "../../components/Logo/Logo";
 import "./SignUp.css";
-import type { FormEvent } from "react";
+import axios from "../../api/axios";
 
+type FormFields = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+const defaultFormFields: FormFields = {
+  name: "",
+  email: "",
+  password: "",
+};
+
+// Sign Up Page
 const SignUp = () => {
-  const handleSubmit = (e: FormEvent) => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormFields({
+      ...formFields,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("Submitting form...");
+
+    const { name, email, password } = formFields;
+    const res = await axios.post("/auth/sign-up", {
+      name,
+      email,
+      password,
+    });
   };
 
   return (
@@ -23,14 +52,29 @@ const SignUp = () => {
           </p>
         </div>
         <form onSubmit={handleSubmit}>
-          <Input label="Full name" />
-          <Input label="Email Address" />
-          <Input label="Password" />
+          <Input
+            onChange={handleChange}
+            label="Full name"
+            name="name"
+            type={"text"}
+          />
+          <Input
+            onChange={handleChange}
+            label="Email Address"
+            name="email"
+            type={"text"}
+          />
+          <Input
+            onChange={handleChange}
+            label="Password"
+            name="password"
+            type={"password"}
+          />
           <Button>Create account</Button>
         </form>
         <p className="text-preset-4-medium form-footer">
           Already have an account?{" "}
-          <Link className="text-preset-4" to="/sign-in">
+          <Link className="text-preset-4-semibold" to="/sign-in">
             Log in
           </Link>
         </p>

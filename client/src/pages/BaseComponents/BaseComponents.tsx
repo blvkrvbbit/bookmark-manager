@@ -9,7 +9,7 @@ const BaseComponents = () => {
     <div className="base-components-container">
       <Logo lightMode={true} />
       {/* <Logo lightMode={false} /> */}
-      <Input
+      {/* <Input
         label="URL"
         placeholder="Search"
         icon="/icons/icon-search.svg"
@@ -20,7 +20,7 @@ const BaseComponents = () => {
         placeholder="Search"
         icon="/icons/icon-search.svg"
         hint="This is a hint to help user."
-      />
+      /> */}
       <Button>Button CTA</Button>
       <Button variant="secondary">Button CTA</Button>
       <Button variant="danger">Button CTA</Button>
