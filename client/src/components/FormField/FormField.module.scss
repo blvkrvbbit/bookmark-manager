@@ -1,0 +1,22 @@
+@use "../../assets/scss/abstracts/variables" as *;
+@use "../../assets/scss/abstracts/mixins" as *;
+
+.formGroup {
+  margin-bottom: $spacing-200;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-075;
+  label {
+    .required {
+      color: $teal-700;
+      margin-left: $spacing-025;
+    }
+  }
+  input {
+    width: 100%;
+    border-radius: $radius-8;
+    padding: $spacing-150;
+    border: 0.1rem solid $neutral-light-500;
+    @include text-preset-4(medium);
+  }
+}

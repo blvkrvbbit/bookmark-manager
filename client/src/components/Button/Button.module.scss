@@ -1,0 +1,28 @@
+@use "../../assets/scss/abstracts/variables" as *;
+@use "../../assets/scss/abstracts/mixins" as *;
+
+.btn {
+  border: none;
+  border-radius: $radius-8;
+  padding: $spacing-200 $spacing-150;
+  cursor: pointer;
+  @include text-preset-3;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-100;
+
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.primary {
+  background: $teal-700;
+  color: $neutral-light-0;
+}

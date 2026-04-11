@@ -1,7 +1,8 @@
 @use "./variables" as *;
+@use "sass:map";
 
 @mixin fw($key) {
-  font-weight: map-get($font-weights, $key);
+  font-weight: map.get($font-weights, $key);
 }
 
 @mixin text-preset-1 {

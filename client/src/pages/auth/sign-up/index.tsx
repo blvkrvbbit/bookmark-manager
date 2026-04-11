@@ -1,8 +1,9 @@
 import SignUpForm from "../components/SignUpForm";
+import classes from "./SignUp.module.scss";
 
 const SignUp = () => {
   return (
-    <div>
+    <div className={classes.wrapper}>
       <SignUpForm />
     </div>
   );

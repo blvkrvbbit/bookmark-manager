@@ -1,0 +1,42 @@
+@use "../../../../assets/scss/abstracts/variables" as *;
+@use "../../../../assets/scss/abstracts/mixins" as *;
+
+.signUpForm {
+  background: $neutral-light-0;
+  max-width: calc(37.5rem - 3.2rem);
+  padding: 3.2rem 2rem;
+  border-radius: $radius-12;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  header {
+    h1 {
+      @include text-preset-1;
+      margin-bottom: $spacing-075;
+    }
+    p {
+      all: unset;
+
+      @include text-preset-4(medium);
+      color: $neutral-light-800;
+    }
+  }
+  .btn {
+    border: none;
+    padding: $spacing-200 $spacing-150;
+    width: 100%;
+    border-radius: $radius-8;
+    background: $teal-700;
+    color: $neutral-light-0;
+    @include text-preset-3;
+  }
+  .authFooter {
+    text-align: center;
+    @include text-preset-4(medium);
+    color: $neutral-light-800;
+    .authLink {
+      @include text-preset-4;
+      color: $neutral-light-900;
+    }
+  }
+}
