@@ -1,37 +1,15 @@
-import { useState, type ChangeEvent, type SubmitEvent } from "react";
 import { Link } from "react-router-dom";
 
 import FormField from "../../../../components/FormField";
-import { Button } from "../../../../components/Button";
-
-import type { SignUpFormValues } from "./types";
+import Button from "../../../../components/Button";
+import { useSignUpForm } from "./useSignUpForm";
 import classes from "./SignUpForm.module.scss";
 
-const defaultFormValues: SignUpFormValues = {
-  fullName: "",
-  email: "",
-  password: "",
-};
-
 const SignUpForm = () => {
-  const [form, setForm] = useState<SignUpFormValues>(defaultFormValues);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name as keyof SignUpFormValues;
-    const value = e.target.value;
-
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleCreate = (e: SubmitEvent) => {
-    e.preventDefault();
-  };
+  const { form, handleChange, handleSubmit } = useSignUpForm();
 
   return (
-    <form className={classes.signUpForm} onSubmit={handleCreate}>
+    <form className={classes.signUpForm} onSubmit={handleSubmit}>
       <div>
         <img src="/bookmark-manager-light.svg" alt="Bookmark manager logo" />
       </div>
@@ -47,6 +25,7 @@ const SignUpForm = () => {
           id="fullName"
           label="Full name"
           name="fullName"
+          value={form.fullName}
           required={true}
           onChange={handleChange}
         />
@@ -54,6 +33,7 @@ const SignUpForm = () => {
           id="email"
           label="Email address"
           name="email"
+          value={form.email}
           type="email"
           required={true}
           onChange={handleChange}
@@ -62,6 +42,7 @@ const SignUpForm = () => {
           id="password"
           label="Password"
           name="password"
+          value={form.password}
           type="password"
           required={true}
           onChange={handleChange}

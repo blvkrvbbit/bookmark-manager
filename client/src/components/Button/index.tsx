@@ -1,7 +1,7 @@
 import classes from "./Button.module.scss";
 import type { ButtonProps } from "./types";
 
-export const Button = ({
+const Button = ({
   children,
   variant = "primary",
   fullWidth = false,
@@ -20,3 +20,5 @@ export const Button = ({
     </button>
   );
 };
+
+export default Button;
