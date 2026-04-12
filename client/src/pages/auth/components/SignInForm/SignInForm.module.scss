@@ -10,31 +10,4 @@
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
-  header {
-    h1 {
-      @include text-preset-1;
-      margin-bottom: $spacing-075;
-    }
-    p {
-      all: unset;
-
-      @include text-preset-4(medium);
-      color: $neutral-light-800;
-    }
-  }
-  .authFooter {
-    text-align: center;
-    @include text-preset-4(medium);
-    color: $neutral-light-800;
-    div {
-      margin-bottom: $spacing-150;
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-      .authLink {
-        @include text-preset-4;
-        color: $neutral-light-900;
-      }
-    }
-  }
 }

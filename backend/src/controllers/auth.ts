@@ -1,4 +1,7 @@
 import type { Context } from "hono";
+import { sign, verify } from "hono/jwt";
+import { setCookie } from "hono/cookie";
+
 import bcrypt from "bcrypt";
 import { pool } from "../../db/db.js";
 
@@ -31,4 +34,53 @@ export const signUp = async (c: Context) => {
     }
     return c.json({ error: "Internal Server Error" }, 500);
   }
+};
+
+const JWT_SECRET = process.env.JWT_SECRET || "super-secret";
+export const signIn = async (c: Context) => {
+  const { email, password } = await c.req.json();
+
+  if (!email || !password) {
+    return c.json({ error: "Email and password are required" }, 400);
+  }
+
+  const result = await pool.query(
+    `
+    SELECT id, full_name, email, password
+    FROM users
+    WHERE email = $1
+  `,
+    [email],
+  );
+
+  const user = result.rows[0];
+
+  if (!user) {
+    return c.json({ error: "Invalid credentials" }, 401);
+  }
+
+  const isMatch = bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return c.json({ error: "Invalid credentials" }, 401);
+  }
+
+  const token = await sign(
+    {
+      sub: user.id,
+      email: user.email,
+      exp: Math.floor(Date.now() / 1000 + 60 * 60 * 42), // 1 day
+    },
+    JWT_SECRET,
+  );
+
+  setCookie(c, "auth_token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Lax",
+    path: "/",
+    maxAge: 60 * 60 * 24,
+  });
+
+  return c.json({ message: "Logged in" });
 };

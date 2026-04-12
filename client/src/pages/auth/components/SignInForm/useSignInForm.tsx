@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type SubmitEvent } from "react";
 import type { SignInFormValues } from "./types";
+import api from "../../../../lib/api";
 
 const defaultFormValues: SignInFormValues = {
   email: "",
@@ -20,7 +21,12 @@ export const useSignInForm = () => {
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
+
+    const payload: SignInFormValues = {
+      ...form,
+    };
+
+    api.post("/auth/sign-in", payload);
   };
 
   const resetForm = () => {

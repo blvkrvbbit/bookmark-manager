@@ -4,22 +4,23 @@ import FormField from "../../../../components/FormField";
 import Button from "../../../../components/Button";
 import { useSignUpForm } from "./useSignUpForm";
 import classes from "./SignUpForm.module.scss";
+import AuthFooter from "../AuthFooter";
+import BookmarkManagerLogo from "../../../../components/BookmarkManagerLogo";
+import AuthHeader from "../AuthHeader";
 
 const SignUpForm = () => {
   const { form, handleChange, handleSubmit } = useSignUpForm();
 
   return (
     <form className={classes.signUpForm} onSubmit={handleSubmit}>
-      <div>
-        <img src="/bookmark-manager-light.svg" alt="Bookmark manager logo" />
-      </div>
-      <header>
-        <h1>Create your account</h1>
-        <p>
-          Join us and start saving your favorite links — organized, searchable,
+      <BookmarkManagerLogo />
+      <AuthHeader
+        title="Create your account"
+        text={`
+         Join us and start saving your favorite links — organized, searchable,
           and always within reach.
-        </p>
-      </header>
+        `}
+      />
       <div className={classes.formInputs}>
         <FormField
           id="fullName"
@@ -51,12 +52,15 @@ const SignUpForm = () => {
           Create Account
         </Button>
       </div>
-      <div className={classes.authFooter}>
-        Already have an account?{" "}
-        <Link className={classes.authLink} to="/auth/sign-in">
-          Log in
-        </Link>
-      </div>
+      <AuthFooter
+        links={[
+          {
+            text: "Already have an account?",
+            linkText: "Log in",
+            to: "/auth/sign-in",
+          },
+        ]}
+      />
     </form>
   );
 };

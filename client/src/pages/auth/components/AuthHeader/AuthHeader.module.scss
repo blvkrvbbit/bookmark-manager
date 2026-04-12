@@ -1,0 +1,14 @@
+@use "../../../../assets/scss/abstracts/variables" as *;
+@use "../../../../assets/scss/abstracts/mixins" as *;
+
+.authHeader {
+  h1 {
+    @include text-preset-1;
+    margin-bottom: $spacing-075;
+  }
+  p {
+    @include text-preset-4(medium);
+    color: $neutral-light-800;
+    width: 100%;
+  }
+}

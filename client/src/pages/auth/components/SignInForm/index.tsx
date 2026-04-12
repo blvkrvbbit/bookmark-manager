@@ -4,19 +4,20 @@ import FormField from "../../../../components/FormField";
 import Button from "../../../../components/Button";
 import classes from "./SignInForm.module.scss";
 import { useSignInForm } from "./useSignInForm";
+import AuthFooter from "../AuthFooter";
+import AuthHeader from "../AuthHeader";
+import BookmarkManagerLogo from "../../../../components/BookmarkManagerLogo";
 
 const SignInForm = () => {
   const { form, handleChange, handleSubmit } = useSignInForm();
 
   return (
     <form className={classes.signInForm} onSubmit={handleSubmit}>
-      <div>
-        <img src="/bookmark-manager-light.svg" alt="Bookmark manager logo" />
-      </div>
-      <header>
-        <h1>Log in to your account</h1>
-        <p>Welcome back! Please enter your details.</p>
-      </header>
+      <BookmarkManagerLogo />
+      <AuthHeader
+        title="Log in to your account"
+        text="Welcome back! Please enter your details."
+      />
       <div className={classes.formInputs}>
         <FormField
           id="email"
@@ -38,20 +39,20 @@ const SignInForm = () => {
           Login
         </Button>
       </div>
-      <div className={classes.authFooter}>
-        <div>
-          Forgot Password?{" "}
-          <Link className={classes.authLink} to="/auth/reset-password">
-            Reset it
-          </Link>
-        </div>
-        <div>
-          Don't have an account?{" "}
-          <Link className={classes.authLink} to="/auth/sign-up">
-            Sign up
-          </Link>
-        </div>
-      </div>
+      <AuthFooter
+        links={[
+          {
+            text: "Forgot Password",
+            linkText: "Reset it",
+            to: "/auth/reset-password",
+          },
+          {
+            text: "Don't have an account?",
+            linkText: "Sign up",
+            to: "/auth/sign-up",
+          },
+        ]}
+      />
     </form>
   );
 };

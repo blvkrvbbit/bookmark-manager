@@ -1,0 +1,8 @@
+@use "../../../../assets/scss/abstracts/variables" as *;
+@use "../../../../assets/scss/abstracts/mixins" as *;
+
+.authFooter {
+  text-align: center;
+  @include text-preset-4(medium);
+  color: $neutral-light-800;
+}

@@ -1,0 +1,13 @@
+@use "../../../../../assets/scss/abstracts/variables" as *;
+@use "../../../../../assets/scss/abstracts/mixins" as *;
+
+.authFooterLink {
+  margin-bottom: $spacing-150;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  .authLink {
+    @include text-preset-4;
+    color: $neutral-light-900;
+  }
+}
