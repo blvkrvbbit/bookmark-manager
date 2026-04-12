@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type SubmitEvent } from "react";
 import type { SignUpFormValues } from "./types";
+import api from "../../../../lib/api";
 
 const defaultFormValues: SignUpFormValues = {
   fullName: "",
@@ -20,12 +21,15 @@ export const useSignUpForm = () => {
     }));
   };
 
-  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const payload: SignUpFormValues = {
       ...form,
     };
+
+    const res = await api.post("/auth/sign-up", payload);
+    console.log(res.data);
     console.log("SIGN UP:", payload);
   };
 
