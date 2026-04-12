@@ -53,7 +53,7 @@ const SignUpForm = () => {
       </div>
       <div className={classes.authFooter}>
         Already have an account?{" "}
-        <Link className={classes.authLink} to="/sign-in">
+        <Link className={classes.authLink} to="/auth/sign-in">
           Log in
         </Link>
       </div>

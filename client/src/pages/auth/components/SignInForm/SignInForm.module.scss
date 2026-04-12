@@ -1,7 +1,7 @@
 @use "../../../../assets/scss/abstracts/variables" as *;
 @use "../../../../assets/scss/abstracts/mixins" as *;
 
-.signUpForm {
+.signInForm {
   background: $neutral-light-0;
   max-width: 34.3rem;
   width: 100%;
@@ -26,9 +26,15 @@
     text-align: center;
     @include text-preset-4(medium);
     color: $neutral-light-800;
-    .authLink {
-      @include text-preset-4;
-      color: $neutral-light-900;
+    div {
+      margin-bottom: $spacing-150;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+      .authLink {
+        @include text-preset-4;
+        color: $neutral-light-900;
+      }
     }
   }
 }

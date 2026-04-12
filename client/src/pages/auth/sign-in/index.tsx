@@ -1,8 +1,8 @@
 import SignInForm from "../components/SignInForm";
-
+import classes from "./SignIn.module.scss";
 const SignIn = () => {
   return (
-    <div>
+    <div className={classes.wrapper}>
       <SignInForm />
     </div>
   );
