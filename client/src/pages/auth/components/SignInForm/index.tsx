@@ -44,7 +44,7 @@ const SignInForm = () => {
           {
             text: "Forgot Password",
             linkText: "Reset it",
-            to: "/auth/reset-password",
+            to: "/auth/forgot-password",
           },
           {
             text: "Don't have an account?",

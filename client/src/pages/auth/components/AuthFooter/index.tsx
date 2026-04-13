@@ -5,8 +5,13 @@ import AuthFooterLink from "./AuthFooterLink";
 const AuthFooter = ({ links }: AuthFooterProps) => {
   return (
     <div className={classes.authFooter}>
-      {links.map((l) => (
-        <AuthFooterLink text={l.text} linkText={l.linkText} to={l.to} />
+      {links.map((l, id: number) => (
+        <AuthFooterLink
+          key={id}
+          text={l.text}
+          linkText={l.linkText}
+          to={l.to}
+        />
       ))}
     </div>
   );

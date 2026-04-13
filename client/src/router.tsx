@@ -10,6 +10,7 @@ import SignUp from "./pages/auth/sign-up";
 import ResetPassword from "./pages/auth/reset-password";
 import Archived from "./pages/archived";
 import Auth from "./pages/auth";
+import ForgotPassword from "./pages/auth/forgot-password";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +19,7 @@ const router = createBrowserRouter(
       <Route path="auth" element={<Auth />}>
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
-
+        <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="reset-password" element={<ResetPassword />} />
       </Route>
       <Route path="archived" element={<Archived />} />
