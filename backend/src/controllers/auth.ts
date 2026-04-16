@@ -4,7 +4,11 @@ import { setCookie } from "hono/cookie";
 
 import bcrypt from "bcrypt";
 import { pool } from "../../db/db.js";
-import { generateResetToken, hashToken } from "../utils/resetToken.js";
+import {
+  compareToken,
+  generateResetToken,
+  hashToken,
+} from "../utils/resetToken.js";
 import { sendResetEmail } from "../utils/email.js";
 
 export const signUp = async (c: Context) => {
@@ -61,7 +65,7 @@ export const signIn = async (c: Context) => {
     return c.json({ error: "Invalid credentials" }, 401);
   }
 
-  const isMatch = bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
     return c.json({ error: "Invalid credentials" }, 401);
@@ -108,7 +112,8 @@ export const forgotPassword = async (c: Context) => {
   }
 
   const rawToken = generateResetToken();
-  const hashedToken = hashToken(rawToken);
+  const hashedToken = await hashToken(rawToken);
+
   await pool.query("DELETE FROM password_resets WHERE user_id = $1", [user.id]);
 
   await pool.query(
@@ -125,9 +130,53 @@ export const forgotPassword = async (c: Context) => {
 
   const resetLink = `${process.env.FRONTEND_URL}/auth/reset-password?token=${rawToken}`;
 
-  // console.log("RESET LINK:", resetLink);
   await sendResetEmail(user.email, resetLink);
   return c.json({
     message: "If that email exists, a reset link has been sent",
   });
+};
+
+export const resetPassword = async (c: Context) => {
+  const { token, password: newPassword } = await c.req.json();
+
+  if (!token || !newPassword) {
+    return c.json({ error: "Invalid request" }, 400);
+  }
+
+  const result = await pool.query(`
+  SELECT pr.*, u.id as user_id
+  FROM password_resets pr
+  JOIN users u ON u.id = pr.user_id
+  WHERE pr.expires_at > NOW()
+`);
+
+  let validReset = null;
+
+  for (const row of result.rows) {
+    const isMatch = await compareToken(token, row.token);
+    if (isMatch) {
+      validReset = row;
+      break;
+    }
+  }
+
+  console.log(validReset);
+  if (!validReset) {
+    return c.json({ error: "Invalid or expired token" }, 400);
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+  await pool.query(
+    `
+    UPDATE users SET password = $1 WHERE id = $2  
+  `,
+    [hashedPassword, validReset.user_id],
+  );
+
+  await pool.query(`DELETE FROM password_resets where user_id = $1`, [
+    validReset.user_id,
+  ]);
+
+  return c.json({ message: "Password reset successful" });
 };

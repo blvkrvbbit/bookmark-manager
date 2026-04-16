@@ -1,0 +1,13 @@
+@use "../../../../assets/scss/abstracts/variables" as *;
+@use "../../../../assets/scss/abstracts/mixins" as *;
+
+.authCard {
+  background: $neutral-light-0;
+  max-width: 34.3rem;
+  width: 100%;
+  padding: 3.2rem 2rem;
+  border-radius: $radius-12;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}

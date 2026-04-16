@@ -1,5 +1,12 @@
+import ResetPasswordForm from "../components/ResetPasswordForm";
+import classes from "./ResetPassword.module.scss";
+
 const ResetPassword = () => {
-  return <div>Reset Password</div>;
+  return (
+    <div className={classes.wrapper}>
+      <ResetPasswordForm />
+    </div>
+  );
 };
 
 export default ResetPassword;
