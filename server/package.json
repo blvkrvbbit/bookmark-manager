@@ -11,7 +11,9 @@
     "hono": "^4.12.15"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/node": "^20.11.17",
+    "@types/pg": "^8.20.0",
     "tsx": "^4.7.1",
     "typescript": "^5.8.3"
   }
