@@ -1,4 +1,6 @@
 import { serve } from "@hono/node-server";
+import { config } from "dotenv";
+config();
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import authRoutes from "./routes/auth.js";
@@ -14,7 +16,7 @@ app.use(
 );
 
 app.get("/", (c) => {
-  return c.text("Bookmark Manager Api");
+  return c.text(`Bookmark manager api`);
 });
 
 app.route("/api/v1/auth", authRoutes);
