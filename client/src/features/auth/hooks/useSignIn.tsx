@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import api from "../../../lib/api";
 
 type SignInFormValues = {
   email: string;
@@ -23,9 +24,13 @@ export const useSignInForm = () => {
     }));
   };
 
-  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
+    const payload: SignInFormValues = {
+      ...form,
+    };
+
+    await api.post("/auth/sign-in", payload);
   };
 
   const resetForm = () => {
