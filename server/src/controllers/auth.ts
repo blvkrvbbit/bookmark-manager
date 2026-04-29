@@ -60,7 +60,7 @@ export const signIn = async (c: Context) => {
     `
     SELECT id, full_name, email, password
     FROM users
-    WHERE email $1
+    WHERE email = $1
     `,
     [email],
   );
