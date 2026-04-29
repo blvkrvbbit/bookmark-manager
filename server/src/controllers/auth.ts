@@ -2,7 +2,7 @@ import type { Context } from "hono";
 import bcrypt from "bcrypt";
 import { pool } from "../../db/db.js";
 import { sign } from "hono/jwt";
-import { setCookie } from "hono/cookie";
+import { deleteCookie, setCookie } from "hono/cookie";
 
 /**
  * Sign Up Route
@@ -102,6 +102,24 @@ type UserPayload = {
   email: string;
 };
 
+/**
+ * Sign Out Route
+ * /auth/sign-out
+ * Public Route
+ */
+export const signOut = (c: Context) => {
+  deleteCookie(c, "auth_token", {
+    path: "/",
+  });
+
+  return c.json({ message: "Logged out" });
+};
+
+/**
+ * Me route
+ * /auth/me
+ * Private Route
+ */
 export const getMe = async (c: Context) => {
   const user = c.get("user") as UserPayload;
 
