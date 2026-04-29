@@ -1,5 +1,7 @@
 import { useState, type ChangeEvent, type SubmitEvent } from "react";
 import api from "../../../lib/api";
+import { useAuth } from "../../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 type SignInFormValues = {
   email: string;
@@ -13,6 +15,8 @@ const defaultFormValues: SignInFormValues = {
 
 export const useSignInForm = () => {
   const [form, setForm] = useState<SignInFormValues>(defaultFormValues);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name as keyof SignInFormValues;
@@ -30,7 +34,12 @@ export const useSignInForm = () => {
       ...form,
     };
 
-    await api.post("/auth/sign-in", payload);
+    try {
+      await login(payload);
+      navigate("/");
+    } catch (err) {
+      console.error("Login failed", err);
+    }
   };
 
   const resetForm = () => {

@@ -96,3 +96,36 @@ export const signIn = async (c: Context) => {
 
   return c.json({ message: "Logged in" });
 };
+
+type UserPayload = {
+  sub: number;
+  email: string;
+};
+
+export const getMe = async (c: Context) => {
+  const user = c.get("user") as UserPayload;
+
+  if (!user?.sub) {
+    return c.json({ error: "Unauthorized" }, 401);
+  }
+
+  const result = await pool.query(
+    `
+    SELECT
+      id,
+      full_name AS "fullName",
+      email
+    FROM users
+    WHERE id = $1  
+  `,
+    [user.sub],
+  );
+
+  const dbUser = result.rows[0];
+
+  if (!dbUser) {
+    return c.json({ error: "User not found" }, 404);
+  }
+
+  return c.json({ user: dbUser });
+};
