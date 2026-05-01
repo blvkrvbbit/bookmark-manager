@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import api from "../../../lib/api";
 
 type ForgotPasswordFormValues = {
   email: string;
@@ -20,9 +21,14 @@ export const useForgotPasswordForm = () => {
     }));
   };
 
-  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
+    const payload = {
+      ...form,
+    };
+    console.log(payload);
+    const res = await api.post("/auth/forgot-password", payload);
+    console.log(res.data);
   };
 
   const resetForm = () => {
