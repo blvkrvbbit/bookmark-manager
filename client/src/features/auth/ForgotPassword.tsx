@@ -1,5 +1,7 @@
+import ForgotPasswordForm from "./components/ForgotPasswordForm";
+
 const ForgotPassword = () => {
-  return <div>Forgot Password Page</div>;
+  return <ForgotPasswordForm />;
 };
 
 export default ForgotPassword;

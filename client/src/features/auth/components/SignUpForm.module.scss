@@ -1,0 +1,85 @@
+@use "../../../styles/abstracts/mixins" as *;
+@use "../../../styles/abstracts/variables" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  // Form Header
+  .header {
+    width: 100%;
+    margin-bottom: 3.2rem;
+    h1 {
+      @include text-preset-1;
+      margin-bottom: $spacing-075;
+      width: 100%;
+      text-align: left;
+    }
+    p {
+      text-wrap: auto;
+      @include text-preset-4(medium);
+      color: $neutral-light-800;
+      width: 100%;
+      text-align: left;
+      margin: 0;
+    }
+  }
+
+  // Form Fields
+  .fields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.6rem;
+    margin-bottom: 1.6rem;
+    // Form Field
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-075;
+      label {
+        display: block;
+        @include text-preset-4;
+        .required {
+          color: $teal-700;
+          margin-left: $spacing-025;
+        }
+      }
+      input {
+        width: 100%;
+        border-radius: $radius-8;
+        padding: $spacing-150;
+        border: 0.1rem solid $neutral-light-500;
+        @include text-preset-4(medium);
+      }
+    }
+  }
+
+  // Form Actions
+  .actions {
+    margin-bottom: 3.2rem;
+    button {
+      background: $teal-800;
+      width: 100%;
+      padding: 1.2rem;
+      color: $neutral-light-0;
+      border-radius: $radius-8;
+      @include text-preset-3;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    color: $neutral-light-800;
+    @include text-preset-4(medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-075;
+
+    a {
+      color: $teal-700;
+      @include text-preset-4;
+    }
+  }
+}

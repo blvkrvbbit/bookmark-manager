@@ -16,16 +16,22 @@ import ResetPassword from "../features/auth/ResetPassword";
 // App Pages
 import Dashboard from "../features/dashboard/Dashboard";
 import Archived from "../features/archived/Archived";
+import PublicRoute from "../shared/guards/PublicRoute";
 
 export const router = createBrowserRouter([
   // Auth routes
   {
     element: <AuthLayout />,
     children: [
-      { path: "/auth/sign-in", element: <SignIn /> },
-      { path: "/auth/sign-up", element: <SignUp /> },
-      { path: "/auth/forgot-password", element: <ForgotPassword /> },
-      { path: "/auth/reset-password", element: <ResetPassword /> },
+      {
+        element: <PublicRoute />,
+        children: [
+          { path: "/auth/sign-in", element: <SignIn /> },
+          { path: "/auth/sign-up", element: <SignUp /> },
+          { path: "/auth/forgot-password", element: <ForgotPassword /> },
+          { path: "/auth/reset-password", element: <ResetPassword /> },
+        ],
+      },
     ],
   },
 
