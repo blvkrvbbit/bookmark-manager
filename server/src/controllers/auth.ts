@@ -169,6 +169,54 @@ export const forgotPassword = async (c: Context) => {
 };
 
 /**
+ * Reset Password Route
+ * /auth/reset-password?token=
+ */
+export const resetPassword = async (c: Context) => {
+  const { token, password: newPassword } = await c.req.json();
+
+  if (!token || !newPassword) {
+    return c.json({ error: "Invalid request" }, 400);
+  }
+
+  const result = await pool.query(`
+    SELECT pr.*, u.id as user_id
+    FROM password_resets pr
+    JOIN users u ON u.id = pr.user_id
+    WHERE pr.expires_at > NOW()
+  `);
+
+  let validReset = null;
+
+  for (const row of result.rows) {
+    const isMatch = await compareToken(token, row.token);
+    if (isMatch) {
+      validReset = row;
+      break;
+    }
+  }
+
+  if (!validReset) {
+    return c.json({ error: "Invalid or expired token" }, 400);
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+  await pool.query(
+    `
+    UPDATE users SET password = $1 WHERE id = $2  
+  `,
+    [hashedPassword, validReset.user_id],
+  );
+
+  await pool.query(`DELETE FROM password_resets where user_id = $1`, [
+    validReset.user_id,
+  ]);
+
+  return c.json({ message: "Password reset successful" });
+};
+
+/**
  * Me route
  * /auth/me
  * Private Route

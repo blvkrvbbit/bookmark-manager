@@ -1,18 +1,23 @@
 import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import { useSearchParams } from "react-router-dom";
+import api from "../../../lib/api";
 
 type ResetPasswordFormValues = {
   password: string;
   confirmPassword: string;
+  token: string | null;
 };
 
 const defaultFormValues: ResetPasswordFormValues = {
   password: "",
   confirmPassword: "",
+  token: null,
 };
 
 export const useResetPassword = () => {
   const [form, setForm] = useState<ResetPasswordFormValues>(defaultFormValues);
 
+  const [searchParams] = useSearchParams();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name as keyof ResetPasswordFormValues;
     const value = e.target.value;
@@ -22,9 +27,16 @@ export const useResetPassword = () => {
     }));
   };
 
-  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
+
+    const payload: ResetPasswordFormValues = {
+      ...form,
+      token: searchParams.get("token"),
+    };
+
+    const res = await api.post("/auth/reset-password", payload);
+    console.log(res.data);
   };
 
   const resetForm = () => {
