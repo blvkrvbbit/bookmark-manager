@@ -1,0 +1,35 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.appHeader {
+  background: $neutral-light-0;
+  padding: 1.25rem 1.6rem;
+}
+
+.appHeader > *:not(.search) {
+  flex-shrink: 0;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-125;
+}
+
+.hamburger {
+  padding: $spacing-125;
+  border: 0.1rem solid $neutral-light-400;
+  border-radius: $radius-8;
+  flex-shrink: 0;
+}
+
+.addBtn {
+  background: $teal-700;
+  flex-shrink: 0;
+  padding: $spacing-125;
+  border-radius: $radius-8;
+}
+
+.avatar {
+  flex-shrink: 0;
+}

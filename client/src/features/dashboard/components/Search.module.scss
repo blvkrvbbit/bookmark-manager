@@ -1,0 +1,24 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+.search {
+  width: 100%;
+  position: relative;
+  // flex-shrink: 0;
+  input {
+    border: 0.1rem solid $neutral-light-300;
+    color: $neutral-light-800;
+    width: 100%;
+    height: 100%;
+    padding: $spacing-125 $spacing-500;
+    border-radius: $radius-8;
+    @include text-preset-4(medium);
+    &::placeholder {
+      color: $neutral-light-800;
+    }
+  }
+  .searchIcon {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.2rem;
+  }
+}
