@@ -41,9 +41,9 @@
   @include fw($weight);
 }
 
-@mixin text-preset-5 {
+@mixin text-preset-5($weight: medium) {
   font-size: 1.2rem;
   line-height: 140%;
   letter-spacing: 0px;
-  @include fw(medium);
+  @include fw($weight);
 }

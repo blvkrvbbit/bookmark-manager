@@ -5,18 +5,21 @@ import Avatar from "../../../shared/icons/avatar.svg";
 
 import Search from "./Search";
 
-const AppHeader = () => {
+type Props = {
+  toggleSidebar: () => void;
+};
+
+const AppHeader = ({ toggleSidebar }: Props) => {
   return (
     <header className={classes.appHeader}>
       <div className={classes.topBar}>
-        <button className={classes.hamburger}>
+        <button onClick={toggleSidebar} className={classes.hamburger}>
           <img src={HamburgerIcon} alt="" />
         </button>
         <Search />
         <button className={classes.addBtn}>
           <img src={AddIcon} alt="" />
         </button>
-
         <img className={classes.avatar} src={Avatar} alt="" />
       </div>
     </header>

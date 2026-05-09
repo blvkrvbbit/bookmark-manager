@@ -1,11 +1,10 @@
-import AppHeader from "./components/AppHeader";
-import classes from "./Dashboard.module.scss";
+import DashboardLayout from "../../layouts/DashboardLayout";
 
 const Dashboard = () => {
   return (
-    <div>
-      <AppHeader />
-    </div>
+    <DashboardLayout>
+      <div>Content Goes Here</div>
+    </DashboardLayout>
   );
 };
 
